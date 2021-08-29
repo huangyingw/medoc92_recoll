@@ -19,6 +19,7 @@
     merge = refs/heads/master
 [gdif]
     ignore = *.gdio.diff
+    ignore = ./src/*.sh
 [deploy]
 	host = localhost
 	path = ~/myproject/git/tools/medoc92/recoll
