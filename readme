@@ -6,3 +6,70 @@ It tooks me lots of efforts to customize it to my favorite, on one mac.
 Is it possible to migrate/copy my custom setting from one mac to another mac?
 
 I have tried copying following folder, but no luck:(
+    ~/.recoll/
+    /opt/local/share/recoll/
+
+
+
+Highlight color for query terms: Terms from the user query are highlighted in the result list samples and the preview window. The color can be chosen here. Any Qt color string should work (ie red, #ff0000). The default is blue.
+
+Style sheet: The name of a Qt style sheet text file which is applied to the whole Recoll application on startup. The default value is empty, but there is a skeleton style sheet (recoll.qss) inside the /usr/share/recoll/examples directory. Using a style sheet, you can change most recoll graphical parameters: colors, fonts, etc. See the sample file for a few simple examples.
+
+You should be aware that parameters (e.g.: the background color) set inside the Recoll GUI style sheet will override global system preferences, with possible strange side effects: for example if you set the foreground to a light color and the background to a dark one in the desktop preferences, but only the background is set inside the Recoll style sheet, and it is light too, then text will appear light-on-light inside the Recoll GUI.
+
+On Mac OS, the GUI-related preferences are stored in 
+    ~/.config/Recoll.org/recoll.ini
+    , same as on Linux.
+It's only different on Windows (c:/users/[me]/AppData/Roaming/Recoll.org/recoll.ini)
+
+Maybe I could change the default font on the Mac. What customisations are you using ?
+
+I don't have this file on my mac. I even used this command to search, nothing found:(
+````
+    sudo find / -type f -name recoll.ini -maxdepth 7
+````
+
+My recoll version info:
+````
+    Recoll 1.25.22 + Xapian 1.4.14
+````
+My Macos version info:
+````
+    11.5.1        
+````
+
+Thanks for your offering to change the default font.
+My customisations is more than font, so, if there is a configuration folder I could copy from, that would be great.
+
+I searched for recoll.conf
+````
+sudo find / -type f -name recoll.conf -maxdepth 7 2>/dev/null
+    /System/Volumes/Data/Users/huangyingw/.recoll/recoll.conf
+    /Users/huangyingw/.recoll/recoll.conf
+    /opt/local/share/recoll/examples/recoll.conf
+````
+and copied the following folders to another mac,
+````
+    ~/.recoll/
+    /opt/local/share/recoll/
+````
+, and launch recoll in that mac, no luck:(
+
+Can you please run ls -l in ~/.config/Recoll.org/  ?
+
+I would have expected a recoll.conf file to be in there, but, oops, recoll 1.25 used the 'NativeFormat' for the GUI preferences, so Qt uses another location. 
+I should have reread the Qt documentation (for my excuse, this recoll version is now several years old).
+So, hopefully, you should find  a *.recoll.plist file in ~/Library/Preferences/
+
+great thanks, yes, it is this file:
+````
+    ~/Library/Preferences/org.recoll.recoll.plist
+````
+after copying it to another mac, and re-launch recoll, it work.
+I am trying to build from git cloned source, if I have trouble, will ask you.
+
+where is the default config location in latest master branch?
+````
+    ~/.recoll/ ?
+````
+
